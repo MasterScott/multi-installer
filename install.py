@@ -1,11 +1,14 @@
 from os import remove
+from os.path import join as path_join
+from sys import executable
 from zipfile import ZipFile
+from tempfile import NamedTemporaryFile
 from platform import architecture,system as get_system
 from subprocess import call
 
 def reload_modules():
 	try:from importlib import reload
-	except:pass
+	except:from imp import reload
 	import site
 	reload(site)
 def install(driver):
@@ -13,11 +16,18 @@ def install(driver):
 	if system not in ['Windows','Linux','Darwin']:
 		logv('[ERROR] %s is not supported.'%system)
 	arch=architecture()[0][:2]
-	call(['pip','install','wget'])
-	reload_modules()
-	from wget import download
-	commands=[]
 	with open(devnull,'wb') as NULL:
+		if call([executable,'-m','pip'],stdout=NULL,stderr=NULL):
+			logv('[INFO] PIP is not installed.')
+			with NamedTemporaryFile() as file:
+				file.write(urlopen('https://raw.githubusercontent.com/pypa/get-pip/master/get-pip.py').read())
+				file.flush()
+				logv('[INFO] Starting installation.')
+				call([executable,file.name,'--user'])
+		call([executable,'-m','pip','install','wget','--user'])
+		reload_modules()
+		from wget import download
+		commands=[]
 		if driver:
 			if arch=='64':
 				for i,browser in enumerate(['Google Chrome','Mozilla Firefox']):
@@ -62,7 +72,7 @@ def install(driver):
 							call(['chmod','u+x',path_join(environ['HOME'],'.DeBos','drivers','geckodriver')])
 				else:continue
 				break
-		exit_code=call(['pip','install','-Ur','requirements.txt','--user'])
+		exit_code=call([executable,'-m','pip','install','-Ur','requirements.txt','--user'])
 		if exit_code:exit(exit_code)
 
 if __name__=='__main__':
