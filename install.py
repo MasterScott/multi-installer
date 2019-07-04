@@ -24,11 +24,11 @@ def install(driver):
 				file.flush()
 				logv('[INFO] Starting installation.')
 				call([executable,file.name,'--user'])
-		call([executable,'-m','pip','install','wget','--user'])
-		reload_modules()
-		from wget import download
 		commands=[]
 		if driver:
+			call([executable,'-m','pip','install','wget','--user'])
+			reload_modules()
+			from wget import download
 			if arch=='64':
 				for i,browser in enumerate(['Google Chrome','Mozilla Firefox']):
 					logv('%d) %s'%(i+1,browser))
