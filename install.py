@@ -1,4 +1,4 @@
-from os import remove
+from os import remove,devnull
 from os.path import join as path_join
 from sys import executable
 from zipfile import ZipFile
