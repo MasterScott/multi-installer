@@ -3,7 +3,7 @@ from os.path import join as path_join
 from sys import executable
 from zipfile import ZipFile
 from tempfile import NamedTemporaryFile
-from platform import architecture,system as get_system
+from platform import machine,system as get_system
 from subprocess import call
 
 def reload_modules():
@@ -15,7 +15,7 @@ def install(driver):
 	system=get_system()
 	if system not in ['Windows','Linux','Darwin']:
 		logv('[ERROR] %s is not supported.'%system)
-	arch=architecture()[0][:2]
+	arch=machine()[0][-2:]
 	with open(devnull,'wb') as NULL:
 		if call([executable,'-m','pip'],stdout=NULL,stderr=NULL):
 			logv('[INFO] PIP is not installed.')
