@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2019-07-14
+
+### Added
+
+##### [main.py](main.py)
+
+- More informations about current state of installation.
+
 ## [0.1.3] - 2019-07-11
 
 ### Fixed

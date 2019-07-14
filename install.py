@@ -16,6 +16,7 @@ def install(driver):
 	if system not in ['Windows','Linux','Darwin']:
 		logv('[ERROR] %s is not supported.'%system)
 	arch=machine()[0][-2:]
+	logv('[INFO] Detected %sbit architecture'%arch)
 	with open(devnull,'wb') as NULL:
 		if call([executable,'-m','pip'],stdout=NULL,stderr=NULL):
 			logv('[INFO] PIP is not installed.')
@@ -25,10 +26,12 @@ def install(driver):
 				logv('[INFO] Starting installation.')
 				call([executable,file.name,'--user'])
 		commands=[]
+		logv('[INFO] Starting driver installation.')
 		if driver:
 			call([executable,'-m','pip','install','wget','--user'])
 			reload_modules()
 			from wget import download
+			logv('Select browser for webdriver:')
 			if arch=='64':
 				for i,browser in enumerate(['Google Chrome','Mozilla Firefox']):
 					logv('%d) %s'%(i+1,browser))
@@ -51,6 +54,7 @@ def install(driver):
 							file_link='https://github.com/mozilla/geckodriver/releases/download/{0}/geckodriver-{0}-linux{1}.tar.gz'.format(driver_version,arch)
 						else:
 							file_link='https://github.com/mozilla/geckodriver/releases/download/{0}/geckodriver-{0}-macos.tar.gz'.format(driver_version)
+					logv('[INFO] Downloading webdriver from: %s'%file_link)
 					download(file_link)
 					filename=file_link.split('/')[-1]
 					if filename.endswith('.zip'):
