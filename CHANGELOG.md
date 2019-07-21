@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.5] - 2019-07-21
+
+### Fixed
+
+##### [main.py](main.py)
+
+- Architecture detection.
+
 ## [0.1.4] - 2019-07-14
 
 ### Added
