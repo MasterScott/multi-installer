@@ -2,7 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.1.6] - 2019-07-21
+## [1.1.7] - 2019-07-23
+
+### Added
+
+- `VERSION` file.
+
+### Changed
+
+##### [CHANGELOG.md](CHANGELOG.md)
+
+- Version.
+
+## [1.1.6] - 2019-07-21
 
 ### Fixed
 
@@ -14,7 +26,7 @@ All notable changes to this project will be documented in this file.
 
 - Typo.
 
-## [0.1.5] - 2019-07-21
+## [1.1.5] - 2019-07-21
 
 ### Fixed
 
@@ -22,7 +34,7 @@ All notable changes to this project will be documented in this file.
 
 - Architecture detection.
 
-## [0.1.4] - 2019-07-14
+## [1.1.4] - 2019-07-14
 
 ### Added
 
@@ -30,7 +42,7 @@ All notable changes to this project will be documented in this file.
 
 - More informations about current state of installation.
 
-## [0.1.3] - 2019-07-11
+## [1.1.3] - 2019-07-11
 
 ### Fixed
 
@@ -38,7 +50,7 @@ All notable changes to this project will be documented in this file.
 
 - Checking the system architecture.
 
-## [0.1.2] - 2019-07-04
+## [1.1.2] - 2019-07-04
 
 ### Changed
 
@@ -46,7 +58,7 @@ All notable changes to this project will be documented in this file.
 
 - `wget` is only installed for bots using driver.
 
-## [0.1.1] - 2019-07-04
+## [1.1.1] - 2019-07-04
 
 ### Added
 
@@ -54,7 +66,7 @@ All notable changes to this project will be documented in this file.
 
 - Missing import.
 
-## [0.1.0] - 2019-07-03
+## [1.1.0] - 2019-07-03
 
 ### Added
 
@@ -70,7 +82,7 @@ All notable changes to this project will be documented in this file.
 - Missing reload function.
 - PIP issues on some versions.
 
-## [0.0.2] - 2019-07-02
+## [1.0.0] - 2019-07-02
 
 ### Added
 
@@ -78,7 +90,7 @@ All notable changes to this project will be documented in this file.
 - [install.py](install.py) file.
 - [README.md](README.md) file.
 
-## [0.0.1] - 2019-07-02
+## [1.0.0] - 2019-07-02
 
 ### Added
 
