@@ -33,47 +33,49 @@ def install(driver):
 			from wget import download
 			logv('Select browser for webdriver:')
 			if arch=='64':
-				for i,browser in enumerate(['Google Chrome','Mozilla Firefox']):
+				for i,browser in enumerate(['Google Chrome','Mozilla Firefox','All']):
 					logv('%d) %s'%(i+1,browser))
 			while True:
 				choice=input('#? ') if arch=='64' else '2'
-				if choice=='1' or choice=='2':
-					if choice=='1':
+				if choice in [str(x+1) for x in range(3)]:
+					files_links=[]
+					if choice=='1' or choice=='3':
 						driver_version=urlopen('https://chromedriver.storage.googleapis.com/LATEST_RELEASE').read().decode()
 						if system=='Windows':
-							file_link='https://chromedriver.storage.googleapis.com/%s/chromedriver_win32.zip'%driver_version
+							files_links.append('https://chromedriver.storage.googleapis.com/%s/chromedriver_win32.zip'%driver_version)
 						elif system=='Linux':
-							file_link='https://chromedriver.storage.googleapis.com/%s/chromedriver_linux64.zip'%driver_version
+							files_links.append('https://chromedriver.storage.googleapis.com/%s/chromedriver_linux64.zip'%driver_version)
 						else:
-							file_link='https://chromedriver.storage.googleapis.com/%s/chromedriver_mac64.zip'%driver_version
-					if choice=='2':
+							files_link.append('https://chromedriver.storage.googleapis.com/%s/chromedriver_mac64.zip'%driver_version)
+					if choice=='2' or choice=='3':
 						driver_version='v0.24.0'
 						if system=='Windows':
-							file_link='https://github.com/mozilla/geckodriver/releases/download/{0}/geckodriver-{0}-win{1}.zip'.format(driver_version,arch)
+							files_links.append('https://github.com/mozilla/geckodriver/releases/download/{0}/geckodriver-{0}-win{1}.zip'.format(driver_version,arch))
 						elif system=='Linux':
-							file_link='https://github.com/mozilla/geckodriver/releases/download/{0}/geckodriver-{0}-linux{1}.tar.gz'.format(driver_version,arch)
+							files_links.append('https://github.com/mozilla/geckodriver/releases/download/{0}/geckodriver-{0}-linux{1}.tar.gz'.format(driver_version,arch))
 						else:
-							file_link='https://github.com/mozilla/geckodriver/releases/download/{0}/geckodriver-{0}-macos.tar.gz'.format(driver_version)
-					logv('[INFO] Downloading webdriver from: %s'%file_link)
-					download(file_link)
-					filename=file_link.split('/')[-1]
-					if filename.endswith('.zip'):
-						from zipfile import ZipFile
-						open_archive=ZipFile
-					else:
-						from tarfile import TarFile
-						open_archive=TarFile.open
-					with open_archive(filename) as file:
-						if system=='Windows':
-							file.extractall(path_join(environ['APPDATA'],'DeBos','drivers'))
+							files_links.append('https://github.com/mozilla/geckodriver/releases/download/{0}/geckodriver-{0}-macos.tar.gz'.format(driver_version))
+					for file_link in files_links:
+						logv('[INFO] Downloading webdriver from: %s'%file_link)
+						download(file_link)
+						filename=file_link.split('/')[-1]
+						if filename.endswith('.zip'):
+							from zipfile import ZipFile
+							open_archive=ZipFile
 						else:
-							file.extractall(path_join(environ['HOME'],'.DeBos','drivers'))
-					remove(filename)
-					if system!='Windows':
-						if choice=='1':
-							call(['chmod','u+x',path_join(environ['HOME'],'.DeBos','drivers','chromedriver')])
-						else:
-							call(['chmod','u+x',path_join(environ['HOME'],'.DeBos','drivers','geckodriver')])
+							from tarfile import TarFile
+							open_archive=TarFile.open
+						with open_archive(filename) as file:
+							if system=='Windows':
+								file.extractall(path_join(environ['APPDATA'],'DeBos','drivers'))
+							else:
+								file.extractall(path_join(environ['HOME'],'.DeBos','drivers'))
+						remove(filename)
+						if system!='Windows':
+							if choice=='1':
+								call(['chmod','u+x',path_join(environ['HOME'],'.DeBos','drivers','chromedriver')])
+							else:
+								call(['chmod','u+x',path_join(environ['HOME'],'.DeBos','drivers','geckodriver')])
 				else:continue
 				break
 		exit_code=call([executable,'-m','pip','install','-Ur','requirements.txt','--user'])
