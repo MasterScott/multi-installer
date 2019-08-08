@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2019-08-08
+
+### Added
+
+##### [install.py](install.py)
+
+- Support for newer versions of bots.
+
 ## [1.1.10] - 2019-07-28
 
 ### Added
