@@ -14,27 +14,27 @@ def reload_modules():
 def install(driver):
 	system=get_system()
 	if system not in ['Windows','Linux','Darwin']:
-		log('[ERROR] %s is not supported.'%system)
+		print('[ERROR] %s is not supported.'%system)
 	arch=machine()[-2:]
-	log('[INFO] Detected %sbit architecture'%arch)
+	print('[INFO] Detected %sbit architecture'%arch)
 	with open(devnull,'wb') as NULL:
 		if call([executable,'-m','pip'],stdout=NULL,stderr=NULL):
-			log('[INFO] PIP is not installed.')
+			print('[INFO] PIP is not installed.')
 			with NamedTemporaryFile() as file:
 				file.write(urlopen('https://raw.githubusercontent.com/pypa/get-pip/master/get-pip.py').read())
 				file.flush()
-				log('[INFO] Starting installation.')
+				print('[INFO] Starting installation.')
 				call([executable,file.name,'--user'])
 		commands=[]
-		log('[INFO] Starting driver installation.')
+		print('[INFO] Starting driver installation.')
 		if driver:
 			call([executable,'-m','pip','install','wget','--user'])
 			reload_modules()
 			from wget import download
-			log('Select browser for webdriver:')
+			print('Select browser for webdriver:')
 			if arch=='64':
 				for i,browser in enumerate(['Google Chrome','Mozilla Firefox','All']):
-					log('%d) %s'%(i+1,browser))
+					print('%d) %s'%(i+1,browser))
 			while True:
 				choice=input('#? ') if arch=='64' else '2'
 				if choice in [str(x+1) for x in range(3)]:
@@ -56,7 +56,7 @@ def install(driver):
 						else:
 							files_links.append('https://github.com/mozilla/geckodriver/releases/download/{0}/geckodriver-{0}-macos.tar.gz'.format(driver_version))
 					for file_link in files_links:
-						log('[INFO] Downloading webdriver from: %s'%file_link)
+						print('[INFO] Downloading webdriver from: %s'%file_link)
 						download(file_link)
 						filename=file_link.split('/')[-1]
 						if filename.endswith('.zip'):
@@ -85,12 +85,12 @@ if __name__=='__main__':
 	try:
 		try:input=raw_input
 		except NameError:pass
-		log('[INFO] Bot is not installed.')
-		log('[INFO] Starting installation.')
+		print('[INFO] Bot is not installed.')
+		print('[INFO] Starting installation.')
 		install(argv[1])
-		log('[INFO] Successfully installed %s.'%argv[0])
+		print('[INFO] Successfully installed %s.'%argv[0])
 		INSTALLED=True
 		reload_modules()
-		log('[INFO] Starting bot.')
+		print('[INFO] Starting bot.')
 	except KeyboardInterrupt:exit(0)
 	except:exit(1)
