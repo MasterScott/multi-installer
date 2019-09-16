@@ -48,7 +48,7 @@ def install(driver):
 						else:
 							files_link.append('https://chromedriver.storage.googleapis.com/%s/chromedriver_mac64.zip'%driver_version)
 					if choice=='2' or choice=='3':
-						driver_version='v0.24.0'
+						driver_version='v0.25.0'
 						if system=='Windows':
 							files_links.append('https://github.com/mozilla/geckodriver/releases/download/{0}/geckodriver-{0}-win{1}.zip'.format(driver_version,arch))
 						elif system=='Linux':

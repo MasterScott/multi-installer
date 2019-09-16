@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.3] - 2019-09-16
+
+### Changed
+
+##### [install.py](install.py)
+
+- Version for geckodriver.
+
 ## [1.2.2] - 2019-08-12
 
 ### Removed
