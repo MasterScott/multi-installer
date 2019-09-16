@@ -15,7 +15,7 @@ def install(driver):
 	system=get_system()
 	if system not in ['Windows','Linux','Darwin']:
 		print('[ERROR] %s is not supported.'%system)
-	arch=machine()[-2:]
+	arch=machine()[-2:].replace('86','32')
 	print('[INFO] Detected %sbit architecture'%arch)
 	with open(devnull,'wb') as NULL:
 		if call([executable,'-m','pip'],stdout=NULL,stderr=NULL):

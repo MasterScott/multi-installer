@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2019-09-16
+
+### Fixed
+
+##### [install.py](install.py)
+
+- Bug on 32-bit machines.
+
 ## [1.2.3] - 2019-09-16
 
 ### Changed
