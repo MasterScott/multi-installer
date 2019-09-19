@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] - 2019-09-19
+
+### Fixed
+
+##### [install.py](install.py)
+
+- Permissions bug.
+
 ## [1.3.0] - 2019-09-16
 
 ### Fixed

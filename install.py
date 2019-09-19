@@ -72,10 +72,7 @@ def install(driver):
 								file.extractall(path_join(environ['HOME'],'.DeBos','drivers'))
 						remove(filename)
 						if system!='Windows':
-							if choice=='1':
-								call(['chmod','u+x',path_join(environ['HOME'],'.DeBos','drivers','chromedriver')])
-							else:
-								call(['chmod','u+x',path_join(environ['HOME'],'.DeBos','drivers','geckodriver')])
+							call(['chmod','u+x',path_join(environ['HOME'],'.DeBos','drivers','*driver')])
 				else:continue
 				break
 		exit_code=call([executable,'-m','pip','install','-Ur','requirements.txt','--user'])
