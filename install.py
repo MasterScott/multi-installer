@@ -46,7 +46,7 @@ def install(driver):
 						elif system=='Linux':
 							files_links.append('https://chromedriver.storage.googleapis.com/%s/chromedriver_linux64.zip'%driver_version)
 						else:
-							files_link.append('https://chromedriver.storage.googleapis.com/%s/chromedriver_mac64.zip'%driver_version)
+							files_links.append('https://chromedriver.storage.googleapis.com/%s/chromedriver_mac64.zip'%driver_version)
 					if choice=='2' or choice=='3':
 						driver_version='v0.25.0'
 						if system=='Windows':
